@@ -1,42 +1,24 @@
 apiVersion: v1
-
 kind: Deployment
-
 metadata:
-
   name: my-deployment
-
 spec:
-
   replicas: 2
-
-  selector:
-
-    matchLabels:
-
-      app: node.js-app
-
-  template:
-
+selector:
+  matchLabels:
+  app: my-deployment
+template:
     metadata:
-
       labels:
-
         app: my-app
-
     spec:
-
       containers:
-
         -name: node.js-app-container
-
         image:  ausaf009/node.js-app:latest
-
         port:
-
         - containerPort: 3005
 
- ---
+---
  # service.yml
  
 apiVersion: v1
