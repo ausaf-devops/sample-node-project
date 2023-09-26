@@ -39,7 +39,7 @@ jobs:
         run: |
           docker buildx create --use
           docker buildx inspect default --bootstrap
-          docker buildx build --file Dockerfile -t ausaf-wohlig/node.js-app:latest --load .
+          docker buildx build --file Dockerfile -t ausaf009/node.js-app:latest --load .
 
  
 
