@@ -62,8 +62,8 @@ jobs:
 
       - name: Push Docker image to Docker Hub
         run: |
-          echo ${{ secrets.DOCKERHUBE }} | docker login --username ausaf-wohlig --password-stdin
-          docker push ausaf-wohlig/node.js-app:latest
+          echo ${{ secrets.DOCKERHUBE }} | docker login --username ausaf009 --password-stdin
+          docker push ausaf009/node.js-app:latest
 
  
 
