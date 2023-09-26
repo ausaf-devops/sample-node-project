@@ -70,7 +70,7 @@ jobs:
       - name: Update manifest file
         run: |
           # Assuming you have a manifest file named k8s.yaml
-          yq eval -i '.spec.containers[0].image = "ausaf-wohlig/node.js-app:latest"' deployment.yml
+          yq eval -i '.spec.containers[0].image = "ausaf-wohlig/node.js-app:latest"' manifest.yml
 
       - name: Test service URLs
         run: |
@@ -79,7 +79,7 @@ jobs:
       - name: Deploy to Minikube
         run: |
           # Assuming you have Minikube installed and running
-          minikube kubectl -- apply -f deployment.yml
+          minikube kubectl -- apply -f manifest.yml
 
  
 
