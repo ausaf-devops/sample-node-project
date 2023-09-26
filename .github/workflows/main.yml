@@ -1,0 +1,90 @@
+name: Build, Push, and Deploy
+
+ 
+
+on:
+  push:
+    branches:
+      - master
+
+ 
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+ 
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+ 
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+ 
+
+      - name: Set up Minikube
+        run: |
+          minikube start 
+          minikube kubectl -- get pods --all-namespaces
+          minikube addons enable ingress
+          minikube addons list        
+
+ 
+
+      - name: Build Docker image
+        run: |
+          docker buildx create --use
+          docker buildx inspect default --bootstrap
+          docker buildx build --file Dockerfile -t ausaf009/node.js-app:latest --load .
+
+ 
+
+      - name: Build Docker image
+        run: |
+          docker images
+
+      - name: Set up Kubectl
+        uses: azure/setup-kubectl@v1
+        with:
+          version: latest    
+
+ 
+
+      - name: Get namespaces
+        run: |
+          kubectl get namespace
+
+ 
+
+      - name: Push Docker image to Docker Hub
+        run: |
+          echo ${{ secrets.DOCKERHUBE }} | docker login --username ausaf009 --password-stdin
+          docker push ausaf009/node.js-app:latest
+
+ 
+
+      - name: Update manifest file
+        run: |
+          # Assuming you have a manifest file named k8s.yaml
+          yq eval -i '.spec.containers[0].image = "ausaf-wohlig/node.js-app:latest"' deployment.yml
+
+      - name: Test service URLs
+        run: |
+          minikube kubectl -- get pods -A -o wide
+
+      - name: Deploy to Minikube
+        run: |
+          # Assuming you have Minikube installed and running
+          minikube kubectl -- apply -f deployment.yml
+
+ 
+
+          
+      - name: Test service URLs
+        run: |
+            minikube service list 
+            minikube service my-deployment --url
