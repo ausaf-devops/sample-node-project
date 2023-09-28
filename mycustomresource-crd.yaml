@@ -1,0 +1,20 @@
+spec:
+  group: example.com
+  versions:
+    - name: v1
+      served: true
+      storage: true
+  scope: Namespaced
+  names:
+    plural: mycustomresources
+    singular: mycustomresource
+    kind: MyCustomResource
+    shortNames:
+      - mcr
+  validation:
+    openAPIV3Schema:
+      type: object
+      properties:
+        message:
+          type: string
+
