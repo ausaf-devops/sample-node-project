@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Service
 metadata:
-  name: my-Deployment
+  name: my-service
 spec:
   selector:
     app: my-app
