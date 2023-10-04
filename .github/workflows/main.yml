@@ -39,15 +39,7 @@ jobs:
       - name: Set up Kubectl
         uses: azure/setup-kubectl@v1
         with:
-          version: latest    
-
- 
-
-      - name: Get namespaces
-        run: |
-          kubectl get namespace
-
- 
+          version: latest     
 
       - name: Push Docker image to Docker Hub
         run: |
