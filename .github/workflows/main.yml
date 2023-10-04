@@ -72,19 +72,6 @@ jobs:
           # Assuming you have a manifest file named k8s.yaml
           yq eval -i '.spec.containers[0].image = "ausaf-wohlig/node.js-app:latest"' manifest.yml
 
-      - name: Test service URLs
-        run: |
-          minikube kubectl -- get pods -A -o wide
+     
 
-      - name: Deploy to Minikube
-        run: |
-          # Assuming you have Minikube installed and running
-          minikube kubectl -- apply -f manifest.yml
-
- 
-
-          
-      - name: Test service URLs
-        run: |
-            minikube service list 
-            minikube service my-deployment --url
+  
