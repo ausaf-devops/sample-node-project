@@ -27,7 +27,7 @@ jobs:
         run: |
           docker buildx create --use
           docker buildx inspect default --bootstrap
-          docker buildx build --file Dockerfile -t ausaf009/node.js-app-image:$GITHUB_REF_NAME-$GITHUB_SHA --load .
+          docker buildx build --file Dockerfile -t ausaf009/nodejs-app-image:$GITHUB_REF_NAME-$GITHUB_SHA --load .
           docker images
 
       - name: Set up Kubectl
@@ -38,14 +38,14 @@ jobs:
       - name: Push Docker image to Docker Hub
         run: |
           echo ${{ secrets.DOCKERHUBE }} | docker login --username ausaf009 --password-stdin
-          docker push ausaf009/node.js-app:latest
+          docker push :ausaf009/nodejs-app-image::${{ env.GITHUB_BRANCH }}
 
       - name: Update manifest file
         run: |
           # Assuming you have a manifest file named k8s.yaml
           git config --global user.email "ausafansari.wohlig@gmail.com"
           git config --global user.name  "ausaf-wohlig"
-          yq eval -i '.spec.containers[0].image = "ausaf009/node.js-app:latest"' deploy/manifest.yml
+          yq eval -i '.spec.containers[0].image = "ausaf009/nodejs-app-image::${{ env.GITHUB_BRANCH }}"' deploy/manifest.yml
 
           git add .
 
