@@ -45,7 +45,7 @@ jobs:
           # Assuming you have a manifest file named k8s.yaml
           git config --global user.email "ausafansari.wohlig@gmail.com"
           git config --global user.name  "ausaf-wohlig"
-          yq eval -i '.spec.containers[0].image = "ausaf009/nodejs-app-image::${{ env.GITHUB_BRANCH }}"' deploy
+          yq eval -i '.spec.containers[0].image = "ausaf009/nodejs-app-image::${{ env.GITHUB_BRANCH }}"' deploy/manifest.yml
 
           git add .
 
