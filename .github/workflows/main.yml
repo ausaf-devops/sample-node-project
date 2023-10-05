@@ -38,7 +38,7 @@ jobs:
       - name: Push Docker image to Docker Hub
         run: |
           echo ${{ secrets.DOCKERHUBE }} | docker login --username ausaf009 --password-stdin
-          docker push ausaf009/nodejs-app-image::${{ env.GITHUB_BRANCH }}
+          docker push ausaf009/nodejs-app-image:${{ env.GITHUB_BRANCH }}
 
       - name: Update manifest file
         run: |
