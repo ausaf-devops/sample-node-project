@@ -18,3 +18,5 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
+  containers:
+    - image: ausaf009/nodejs-app-image:master-a3a96010a0cc7ef47121a8db990b720a2e4ca0d9
