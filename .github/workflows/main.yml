@@ -36,6 +36,8 @@ jobs:
       - name: Update manifest file
         run: |
           # Assuming you have a manifest file named k8s.yaml
+          git config --global user.email "ausafansari.wohlig@gmail.com"
+          git config --global user.name  "ausaf-wohlig"
           yq eval -i '.spec.containers[0].image = "ausaf009/node.js-app:latest"' deploy/manifest.yml
 
           git add .
