@@ -8,7 +8,7 @@ spec:
     matchLabels:
       app: my-deployment
   containers:
-    - image: ausaf009/nodejs-app-image::master-28c89fb1d675fbaf158f810b09b86718c7f58df2
+    - image: ausaf009/nodejs-app-image::master-bcfaefdb331acf6c136720d1334578fc03ce67c9
 template:
   metadata:
     labels:
