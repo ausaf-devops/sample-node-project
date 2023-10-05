@@ -5,16 +5,18 @@ metadata:
 spec:
   replicas: 2
   selector:
-   matchLabels:
-     app: my-deployment
+    matchLabels:
+      app: my-deployment
+  containers:
+    - image: ausaf009/node.js-app:latest
 template:
-    metadata:
-      labels:
-        app: my-deployment
-    spec:
-      containers:
-        -name: node.js-app-container
-        image:  ausaf009/node.js-app:latest
-        imagePullPolicy: Always
-        port:
+  metadata:
+    labels:
+      app: my-deployment
+  spec:
+    containers:
+      -name: node.js-app-container
+      image: ausaf009/node.js-app:latest
+      imagePullPolicy: Always
+      port:
         - containerPort: 3005
