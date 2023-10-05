@@ -14,9 +14,7 @@ spec:
     spec:
       containers:
         - name: my-app-container
-          image: ausaf009/nodejs-app-image:master-d5f59dd6ad8a3e3442a306cbfb875263ab824f75
+          image: ausaf009/nodejs-app-image:master-2cffb8a5d82eec5a1d14de337434624c7acd0604
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
-  containers:
-    - image: ausaf009/nodejs-app-image:master-a3a96010a0cc7ef47121a8db990b720a2e4ca0d9
