@@ -19,4 +19,4 @@ spec:
           ports:
             - containerPort: 8000
   containers:
-    - image: ausaf009/nodejs-app-image::master-aad5f6ab4ed76c3e336a37a00bba0c6cb11d77e5
+    - image: ausaf009/nodejs-app-image::master-d529f3e5675276a9465d3503ee19aa22e2bd741f
